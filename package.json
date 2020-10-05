@@ -1,0 +1,19 @@
+{
+    "name": "webprogamming493",
+    "scripts": {
+        "dev": "nodemon --watch server/index.js",
+        "start": "nodemon server/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dgp0301/FitnessApp.git"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "dotenv": "^8.2.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
