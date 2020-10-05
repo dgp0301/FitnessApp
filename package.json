@@ -1,5 +1,5 @@
 {
-    "name": "webprogamming493",
+    "name": "fitnessapp",
     "scripts": {
         "dev": "nodemon --watch server/index.js",
         "start": "nodemon server/index.js"

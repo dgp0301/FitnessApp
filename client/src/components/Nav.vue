@@ -57,7 +57,7 @@
 </template>
 
 <script>
-components:{
-      Nav
-    }
+  export default{
+    
+  }
 </script>
