@@ -2,7 +2,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
-            <img src="https://www.myfitnesspal.com/react-static/53af3757ef0dac6bc550728bdf9e779b.svg" width="120" height="36">
+            <img src="../assets/logo.png">
           </a>
       
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
