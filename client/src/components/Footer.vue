@@ -1,6 +1,6 @@
 <template>
 <footer class="footer">
-    <div class="content has-text-">
+    <div class="content has-text-centered">
         <p>
         <strong>FitnessApp</strong> by <a href="https://www.linkedin.com/in/daniel-pimentel-5b3389198/">Daniel Pimentel</a>
     </p>
