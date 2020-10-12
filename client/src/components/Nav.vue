@@ -15,7 +15,7 @@
         <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active':isActive}">
           <div class="navbar-start">
             <router-link to="/" class="navbar-item">Home</router-link> 
-            <router-link to="/about"  class="navbar-item">About</router-link>
+            <router-link to="/feed"  class="navbar-item">Feed</router-link>
       
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
@@ -23,9 +23,7 @@
               </a>
       
               <div class="navbar-dropdown">
-                <a class="navbar-item">
-                  About
-                </a>
+                <router-link to="/about"  class="navbar-item">About</router-link>
                 <a class="navbar-item">
                   Jobs
                 </a>
@@ -43,6 +41,7 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
+                <router-link to="/track"  class="button is-primary">Track Workout</router-link>
                 <router-link to="/signup"  class="button is-primary"><strong>Sign up</strong></router-link>
                 <router-link to="/login"  class="button is-primary">Login</router-link>
               </div>
