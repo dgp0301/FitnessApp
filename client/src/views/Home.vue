@@ -1,14 +1,15 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
-    <h1>Welcome to our home page</h1>
-  </div>
+  <section class="section">
+        <div class="container">
+          <h1 class="title">Welcome To ExplosiveTracker</h1>
+          <h2 class="subtitle">
+            This is an application to have a digital tracker of your weighlifting progress and share with the community
+          </h2>
+          <button class="button is-primary">
+              Get Started
+          </button>
+        </div>
+      </section>
 </template>
 
 <script>
