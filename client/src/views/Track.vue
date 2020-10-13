@@ -6,9 +6,9 @@
     <div class="select">
       <select>
         <option>Select a workout</option>
-        <option v-for ="workout in workouts"
-        :key="workout">
-        {{workout}}
+        <option v-for ="(x,i) in workouts.types"
+        :key="i">
+        {{x}}
         </option>
       </select>
     </div>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { workouts } from "@/models/workout";
+import workouts from "@/models/workout";
 export default {
     data(){
         return{

@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-fixed-top-info" role="navigation" aria-label="main navigation">
+    <nav class="navbar container is-fixed-top is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             <img src="../assets/logo.png">
@@ -40,11 +40,7 @@
       
           <div class="navbar-end">
             <div class="navbar-item">
-              <div class="buttons">
-                <router-link to="/track"  class="button is-primary">Track Workout</router-link>
-                <router-link to="/signup"  class="button is-primary"><strong>Sign up</strong></router-link>
-                <router-link to="/login"  class="button is-primary">Login</router-link>
-              </div>
+              <LoginBadge/>
             </div>
           </div>
         </div>
@@ -52,12 +48,17 @@
 </template>
 
 <script>
+  import LoginBadge from "@/components/LoginBadge";
+
   export default{
     data: ()=> ({
       isActive:false
     }),
     methods:{
 
+    },
+    components:{
+      LoginBadge
     }
   }
 </script>

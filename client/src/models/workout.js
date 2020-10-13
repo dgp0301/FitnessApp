@@ -1,4 +1,12 @@
 //List for the types of workouts available
-export const workouts =[
- 'Cardio', 'Weightlifting', 'Yoga'
-]
+const workouts ={
+    types:['Cardio', 'Weightlifting', 'Yoga'],
+    addType(workout){
+        this.types.push(workout);
+    },
+    deleteType(workout){
+        this.types.splice(this.types.findIndex(workout),1);
+    }
+
+}
+export default workouts;

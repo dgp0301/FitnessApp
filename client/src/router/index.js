@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Feed from '../views/Feed.vue'
+import session from '../models/session'
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,9 @@ const routes = [
   { path: '/',name: 'Home', component: Home },
   { path: '/login',name: 'Login', component: Login },
   { path: '/signup',name: 'Signup', component: Signup },
-  { path: '/feed',name: 'Feed', component: Feed },
+  { path: '/feed',name: 'Feed', component: Feed, 
+    beforeEnter: checkUserLogin
+  },
   {
     path: '/about',
     name: 'About',
@@ -35,5 +38,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+function checkUserLogin(to, from, next){
+    if(session.user)
+      next()
+    else
+      next('login')
+}
 
 export default router
