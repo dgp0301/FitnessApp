@@ -8,7 +8,7 @@
         <div class="field has-addons">
         <div class="control is-expanded">
         <div class="select is-fullwidth">
-            <select name="country">
+            <select name="users" v-model="selectedUser">
                 <option v-for ="(x,i) in session.users"
                 :key="i">
                 {{x.handle}}
@@ -17,7 +17,7 @@
         </div>
         </div>
         <div class="control">
-          <button type="submit" class="button is-primary">Delete</button>
+          <button type="submit" class="button is-success">Delete</button>
         </div>
         </div>
         </form>
@@ -26,27 +26,24 @@
           Adding Users
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                    <input class="input" type="email" placeholder="Email">
+                    <input class="input" type="input" placeholder="Name" v-model="addedUser">
                     <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                    </span>
-                    <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-user"></i>
                     </span>
                     </p>
                 </div>
                 <div class="field">
                     <p class="control has-icons-left">
-                    <input class="input" type="password" placeholder="Password">
+                    <input class="input" type="input" placeholder="Username" v-model="addedHandle">
                     <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-at"></i>
                     </span>
                     </p>
                 </div>
                 <div class="field">
                     <p class="control">
-                        <button class="button is-success">
-                        Login
+                        <button class="button is-success" @click.prevent="addUser">
+                        Add
                         </button>
                     </p>
                 </div>
@@ -60,7 +57,8 @@
         <div class="field has-addons">
         <div class="control is-expanded">
         <div class="select is-fullwidth">
-            <select name="workouts" v-model="selectedWorkout">
+            <select name="workouts" v-model="selectedWorkout" >
+                <option>Select a Workout</option>
                 <option v-for ="(x,i) in workouts.types"
                 :key="i">
                 {{x}}
@@ -69,9 +67,8 @@
         </div>
         </div>
         <div class="control">
-          <button type="submit" class="button is-primary" @click.prevent="ridWorkout">Delete</button>
+          <button type="submit" class="button is-success" @click.prevent="ridWorkout">Delete</button>
         </div>
-        {{selectedWorkout}}
         </div>
         </form>
         <!-- Adding workouts -->
@@ -79,27 +76,16 @@
           Adding workouts
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                    <input class="input" type="email" placeholder="Email">
+                    <input class="input" type="email" placeholder="Workout" v-model="addedWorkout">
                     <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                    </span>
-                    <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
-                    </span>
-                    </p>
-                </div>
-                <div class="field">
-                    <p class="control has-icons-left">
-                    <input class="input" type="password" placeholder="Password">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
+                    <i class="fas fa-dumbbell"></i>
                     </span>
                     </p>
                 </div>
                 <div class="field">
                     <p class="control">
-                        <button class="button is-success">
-                        Login
+                        <button class="button is-success" @click.prevent="addWorkout">
+                        Add
                         </button>
                     </p>
                 </div>
@@ -115,12 +101,25 @@ export default {
   data: ()=>({
     workouts,
     session,
-    selectedWorkout:''
+    selectedWorkout:'',
+    addedWorkout:'',
+    selectedUser:'',
+    addedUser:'',
+    addedHandle:''
   }),
   methods:{
     ridWorkout(){
       workouts.deleteType(this.selectedWorkout);
-    }
+    },
+    addWorkout(){
+      workouts.addType(this.addedWorkout);
+    },
+    ridUser(){
+      session.deleteUser(this.selectedUser);
+    },
+    addUser(){
+      session.addUser(this.addedUser, this. addedHandle);
+    },
   }
 
 }
