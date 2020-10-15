@@ -1,7 +1,10 @@
 <template>
 <div>
     <div class="media" v-if="session.user">
-        <div class="media-left">
+        <div class="media-left" v-if="session.user.handle=='admin'">
+            <router-link to="/admin"  class="button is-primary">Admin</router-link>
+        </div>
+        <div class="media-left" v-else>
             <router-link to="/track"  class="button is-primary">Track Workout</router-link>
         </div>
         <div class="media-content">

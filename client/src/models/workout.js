@@ -5,7 +5,7 @@ const workouts ={
         this.types.push(workout);
     },
     deleteType(workout){
-        this.types.splice(this.types.findIndex(workout),1);
+        this.types.splice(this.types.findIndex(x=>x==workout),1);
     }
 
 }
