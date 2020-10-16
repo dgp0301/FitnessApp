@@ -4,21 +4,17 @@
 <form>
   <div class="field">
   <p class="control has-icons-left has-icons-right">
-    <input class="input" type="text" v-model="username">
-    {{username}}
+    <input class="input" type="text" placeholder="Username" v-model="username">
     <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
+      <i class="fas fa-at"></i>
     </span>
   </p>
 </div>
 <div class="field">
   <p class="control has-icons-left">
-    <input class="input" type="password" placeholder="Password">
+    <input class="input" type="text" placeholder="Name">
     <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
+      <i class="fas fa-user"></i>
     </span>
   </p>
 </div>
