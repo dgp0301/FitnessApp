@@ -1,30 +1,28 @@
 <template>
   <div class="card">
-  <div class="card-image">
-    <figure class="image">
-      <img :src="post.url">
-    </figure>
-  </div>
   <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img :src="post.owner.profile" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">{{post.owner.name}}</p>
-        <p class="subtitle is-6">@{{post.owner.handle}}</p>
-      </div>
-    </div>
-
-    <div class="content">
-      {{post.message}}
-      <a href="#">#css</a> <a href="#">#responsive</a>
-      <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
+    <p class="title">
+      {{post.workoutType}}
+    </p>
+    <p class="subtitle">
+      {{post.description}}
+    </p>
+    <p class="has-text-right">
+      @{{post.owner.handle}}
+    </p>
   </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        Sets: {{post.sets}}
+      </span>
+    </p>
+    <p class="card-footer-item">
+      <span>
+        Reps: {{post.reps}}
+      </span>
+    </p>
+  </footer>
 </div>
 </template>
 
@@ -37,8 +35,7 @@ export default {
 </script>
 
 <style>
-    .card{
-        margin-bottom: 30px;
-    }
-
+  .card{
+    margin: 30px;
+  }
 </style>

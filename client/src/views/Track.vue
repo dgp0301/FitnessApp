@@ -89,7 +89,7 @@ export default {
     }),
     methods: {
       trackWorkout(){
-        session.addWorkout(this.workoutType,this.sets,this.reps,this.description);
+        session.addWorkout(this.workoutType,this.sets,this.reps,this.description,session.user);
       }
     }
 }

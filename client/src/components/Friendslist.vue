@@ -18,12 +18,13 @@
     <a class="is-active">Current</a>
     <a>Suggested</a>
   </p>
-  <a class="panel-block is-active" v-for="user in session.users"
-                                  :key="user">
+  <a class="panel-block is-active" v-for="(x,i) in session.users"
+                                  :key="i"
+                                  :user="x">
     <span class="panel-icon">
       <i class="fas fa-user" aria-hidden="true"></i>
     </span>
-    {{user.handle}}
+    {{x.handle}}
   </a>
 </nav>
 </template>
