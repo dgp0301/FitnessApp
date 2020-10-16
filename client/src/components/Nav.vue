@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar container is-fixed-top is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
+          <router-link to="/" class="navbar-item">
             <img src="../assets/logo.png">
-          </a>
+          </router-link>
       
           <a role="button" class="navbar-burger burger" :class="{'is-active':isActive}" @click="isActive = !isActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
@@ -14,7 +14,7 @@
       
         <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active':isActive}">
           <div class="navbar-start">
-            <router-link to="/" class="navbar-item">Home</router-link> 
+            <router-link to="/myexcercise"  class="navbar-item">My Excercises</router-link>
             <router-link to="/feed"  class="navbar-item">Feed</router-link>
       
             <div class="navbar-item has-dropdown is-hoverable">

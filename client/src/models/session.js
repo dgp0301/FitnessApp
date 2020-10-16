@@ -4,6 +4,7 @@
 
 const session = {
     user:null,
+    workouts:[],
     notifications:[],
     users: [
         {
@@ -28,6 +29,9 @@ const session = {
     },
     deleteUser(delhandle){
         this.users.splice(this.users.findIndex(x=> x.handle==this.delhandle),1);
+    },
+    addWorkout(workoutType, sets, reps, description){
+        this.workouts.push({workoutType, sets, reps, description});
     }
     
 }

@@ -6,6 +6,7 @@ import Signup from '../views/Signup.vue'
 import Feed from '../views/Feed.vue'
 import session from '../models/session'
 import Admin from '../views/Admin.vue';
+import MyExcercise from '../views/MyExcercise.vue';
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,9 @@ const routes = [
   { path: '/signup',name: 'Signup', component: Signup },
   { path: '/admin',name: 'Admin', component: Admin },
   { path: '/feed',name: 'Feed', component: Feed, 
+    beforeEnter: checkUserLogin
+  },
+  { path: '/myexcercise',name: 'MyExcercise', component: MyExcercise, 
     beforeEnter: checkUserLogin
   },
   {
