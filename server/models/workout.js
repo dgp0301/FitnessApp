@@ -3,6 +3,7 @@
 */
 const mysql = require('./mysql');
 const PREFIX = process.env.MYSQL_TABLE_PREFIX ||"EX_Fall_2020_";
+const Types = { SQUAT: "Squat" , BENCH_PRESS: "Bench Press" };
 
 async function getAll(){
     return await(mysql.query(`SELECT * FROM ${PREFIX}Workouts`));
@@ -18,7 +19,7 @@ async function add(Owner_id, Start_Time, End_Time, Exercise_Type, Sets, Reps_Per
     const params = [[ new Date(), Owner_id, Start_Time, End_Time, Exercise_Type, Sets, Reps_Per_Set, Weight, RPE ]];
     return await mysql.query(sql,[params]);
 }
-async function update(id, Start_Time, End_Time, Exercise_Type, Sets, Reps_Per_Set, Weight, RPE){
+async function update(id, Start_Time, End_Time, Exercise_Type = 'Squat', Sets, Reps_Per_Set, Weight, RPE){
     const sql = `UPDATE Workout SET ? Where id=?`;
     const params = [[ Start_Time, End_Time, Exercise_Type, Sets, Reps_Per_Set, Weight, RPE ]];
     return await mysql.query(sql,[params,id]);
@@ -27,4 +28,4 @@ async function remove(id){
     const sql = `DELETE FROM Workout Where id=?`;
     return await mysql.query(sql,[id]);
 }
-module.exports = { getAll, get, add, update, remove }
+module.exports = { Types, getAll, get, add, update, remove }

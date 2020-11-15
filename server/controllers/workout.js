@@ -13,16 +13,16 @@ router
 .get('/:id',(req, res, next)=>{
     const id = +req.params.id;
     if(!id) return next();
-    workout.get(id).then(y=>{
-    workout.getExcercise(id).then(x=> res.send( [y, x] )).catch(next)})
-    .catch(next);
+    workout.get(id).then(x=>{
+        res.send(x)
+    }).catch(next);
 })
 .post('/',(req, res, next)=>{
     workout.add(
     req.body.Owner_id,
     req.body.Start_Time,  
     req.body.End_Time, 
-    req.body.Exercise_Type,
+    req.body.Excercise_Type,
     req.body.Sets,
     req.body.Reps_Per_Set,
     req.body.Weight,
