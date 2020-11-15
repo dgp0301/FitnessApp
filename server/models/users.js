@@ -4,7 +4,7 @@
 */
 const bcrypt = require("bcrypt");
 const mysql = require('./mysql');
-//const cm = require('./contactMethods');
+const cm = require('./contactMethods');
 
 const PREFIX = process.env.MYSQL_TABLE_PREFIX ||"";
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 8;
