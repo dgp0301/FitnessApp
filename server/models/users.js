@@ -48,9 +48,9 @@ async function login(email, password){
     const rows = await mysql.query(sql,[email]);
     if(!rows.length) throw { status: 404, message: 'Sorry, that email is not registered'};
 
-    const hash = await bcrypt.hash(password, SALT_ROUNDS);
+    //const hash = await bcrypt.hash(password, SALT_ROUNDS);
     const res = await bcrypt.compare(password, rows[0].Password);
-    console.log({hash, ahh: rows[0].Password });
+    //console.log({hash, ahh: rows[0].Password });
     if(!res) throw {status: 403, message: 'Wrong Password'};
     return get(rows[0].User_id);
 }
