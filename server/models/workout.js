@@ -35,12 +35,12 @@ async function add(Owner_id, Start_Time, End_Time, Exercise_Type, Sets, Reps_Per
     return await mysql.query(sql,[params]);
 }
 async function update(id, Start_Time, End_Time, Exercise_Type = 'Squat', Sets, Reps_Per_Set, Weight, RPE){
-    const sql = `UPDATE Workout SET ? Where id=?`;
+    const sql = `UPDATE ${PREFIX}Workout SET ? Where id=?`;
     const params = [[ Start_Time, End_Time, Exercise_Type, Sets, Reps_Per_Set, Weight, RPE ]];
     return await mysql.query(sql,[params,id]);
 }
 async function remove(id){
-    const sql = `DELETE FROM Workout Where id=?`;
+    const sql = `DELETE FROM ${PREFIX}Workout Where id=?`;
     return await mysql.query(sql,[id]);
 }
 module.exports = { Types, getAll, get, getFollowedWorkouts, getUserWorkouts, add, update, remove }
