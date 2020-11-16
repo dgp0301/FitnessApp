@@ -14,6 +14,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/', express.static(__dirname + '/../docs/'));
 
 app.use(function(req,res,next){
     const arr = (req.headers.authorization ||"").split(" ");
@@ -31,6 +32,10 @@ app.use('/users',users);
 app.use('/workout',workout);
 app.use('/follow',follow);
 app.use('/comments',comments);
+
+app.get('*',(req,res,next)=>{
+    res.sendFile( path.join(__dirname + '/../docs/index.html') )
+})
 
 app.use((err,req,res,next)=>{
     console.log(err);
