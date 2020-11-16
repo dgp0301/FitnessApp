@@ -13,7 +13,7 @@ async function getAll(){
 }
 async function getFollowers(id){
     const sql = `SELECT *,
-    (SELECT CONCAT(FirstName," ",LastName) AS name FROM ${PREFIX}Users WHERE id = ${PREFIX}Followers.Follower_id ) as FollowingName
+    (SELECT CONCAT(FirstName," ",LastName) AS name FROM ${PREFIX}Users WHERE id = ${PREFIX}Followers.Follower_id ) as FollowerName
     FROM ${PREFIX}Followers WHERE Following_id = ? AND isAccepted = b'1'`;
     return await mysql.query(sql,[id])
 }
