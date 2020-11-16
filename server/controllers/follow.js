@@ -12,6 +12,11 @@ router
     follow.getAll().then(x=>res.send(x))
     .catch(next);
 })
+.get('/pendingFollowers',(req,res,next)=>{
+    follow.getPendingFollowers(req.body.id)
+    .then(x=>res.send( x ))
+    .catch(next);
+})
 .put('/acceptLink',(req,res,next)=>{
     follow.acceptFollow(
         req.body.id
