@@ -3,7 +3,6 @@
 */
 
 const express = require('express');
-const { followRequest } = require('../models/follow');
 const follow = require('../models/follow');
 const router = express.Router();
 
