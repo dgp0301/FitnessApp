@@ -29,6 +29,15 @@ async function getPendingFollowers(id){
     WHERE F.Following_id = ? AND F.isAccepted = b'0'`;
     return await mysql.query(sql,[id])
 }
+async function seePendingFollows(id){
+    const sql = `SELECT F.*,
+    CONCAT(U.FirstName," ",U.LastName) as Name
+    FROM ${PREFIX}Followers AS F 
+    INNER JOIN ${PREFIX}Users AS U
+    ON U.id=F.Following_id
+    WHERE F.Follower_id = ? AND F.isAccepted = b'0'`;
+    return await mysql.query(sql,[id])
+}
 async function followRequest(id1, id2){
     const sql = `INSERT INTO ${PREFIX}Followers (created_at, Following_id, Follower_id) VALUES (?)`;
     return await mysql.query(sql,[[new Date(), id1, id2]]);
@@ -40,4 +49,4 @@ async function acceptFollow(id){
 async function remove(id){
     return await mysql.query(`DELETE FROM ${PREFIX}Followers WHERE id = ?`,[id]);
 }
-module.exports = { getAll, getFollowers, getPendingFollowers, followRequest, acceptFollow, remove };
+module.exports = { getAll, getFollowers, getPendingFollowers, seePendingFollows, followRequest, acceptFollow, remove };
