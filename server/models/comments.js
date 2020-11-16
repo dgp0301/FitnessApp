@@ -9,7 +9,7 @@ async function getAll(){
 }
 //Get comments from workout where id
 async function getWorkoutComments(id){
-    const sql = `SELECT C.Text,CONCAT(U.FirstName," ",LastName)
+    const sql = `SELECT C.Text,CONCAT(U.FirstName," ",LastName) AS Commenter
     FROM ${PREFIX}Comments AS C 
     INNER JOIN ${PREFIX}Users AS U ON U.id = C.Owner_id
     WHERE C.Workout_id = ?`;
@@ -17,7 +17,7 @@ async function getWorkoutComments(id){
 }
 //Get comments a certain user has made
 async function getAllUsersComments(id){
-    const sql = `SELECT C.Text,CONCAT(U.FirstName," ",LastName)
+    const sql = `SELECT C.Text, C.Workout_id 
     FROM ${PREFIX}Comments AS C WHERE C.Owner_id = ?`;
     return await mysql.query(sql,[id]);
 }
@@ -30,3 +30,4 @@ async function remove(id){
     const sql = `DELETE FROM ${PREFIX}Comments WHERE id = ?`;
     return await mysql.query(sql,[id]);
 }
+module.exports = { getAll, getWorkoutComments, getAllUsersComments, add, remove };

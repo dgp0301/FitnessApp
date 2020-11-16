@@ -8,6 +8,7 @@ require('dotenv').config();
 const users = require('./controllers/users');
 const workout = require('./controllers/workout');
 const follow = require('./controllers/follow');
+const comments = require('./controllers/comments');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -29,6 +30,7 @@ app.get('/',(req,res)=>{
 app.use('/users',users);
 app.use('/workout',workout);
 app.use('/follow',follow);
+app.use('/comments',comments);
 
 app.use((err,req,res,next)=>{
     console.log(err);
