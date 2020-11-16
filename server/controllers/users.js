@@ -4,6 +4,7 @@
 
 const express = require('express');
 const users = require('../models/users');
+const follow = require('../models/follow');
 const router = express.Router();
 
 router
@@ -24,6 +25,13 @@ router
 .get('/search',(req,res, next)=>{
     users.search(req.query.q).then(x=>res.send(x))
     .catch(next)
+})
+//change to use header eventually cant figure it out currently
+.get('/followers/:id',(req, res, next)=>{
+    const id = +req.params.id;
+    if(!id){return next();}
+    follow.getFollowers(id).then(x => res.send( {x} ))
+    .catch(next);
 })
 .post("/", (req, res, next) =>{
     users.add(
