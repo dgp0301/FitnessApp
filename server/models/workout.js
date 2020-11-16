@@ -15,9 +15,14 @@ async function get(id){
     return rows[0];
 }
 async function getFollowedWorkouts(id){
-    const sql = `SELECT ${PREFIX}Workouts.*,
-    (SELECT CONCAT(FirstName," ",LastName) AS name FROM ${PREFIX}Users, ${PREFIX}Followers WHERE ${PREFIX}Users.id = ${PREFIX}Followers.Following_id ) as FollowingName 
-    FROM ${PREFIX}Workouts, ${PREFIX}Followers WHERE ${PREFIX}Workouts.Owner_id = ${PREFIX}Followers.Following_id AND ${PREFIX}Followers.Follower_id = ? AND ${PREFIX}Followers.isAccepted = b'1'`;
+    const sql = `SELECT W.*,
+    CONCAT(U.FirstName," ",U.LastName) as name
+    FROM ${PREFIX}Workouts AS W
+    INNER JOIN ${PREFIX}Followers AS F
+    ON W.Owner_id = F.Following_id
+    INNER JOIN ${PREFIX}Users AS U
+    ON U.id = F.Following_id
+    WHERE F.Follower_id = ? AND F.isAccepted = b'1'`;
     return await mysql.query(sql,[id]);
 }
 async function getUserWorkouts(id){
