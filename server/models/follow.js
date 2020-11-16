@@ -18,8 +18,8 @@ async function getFollowers(id){
     return await mysql.query(sql,[id])
 }
 async function followRequest(id1, id2){
-    const sql = `INSERT INTO ${PREFIX}Followers (created_at, Following_id, Follower_id) VALUES ?`;
-    return await mysql.query(sql,[id1,id2]);
+    const sql = `INSERT INTO ${PREFIX}Followers (created_at, Following_id, Follower_id) VALUES (?)`;
+    return await mysql.query(sql,[[new Date(), id1, id2]]);
 }
 async function acceptFollow(id){
     const sql = `UPDATE ${PREFIX}Followers SET isAccepted = b'1' WHERE id = ?`;
