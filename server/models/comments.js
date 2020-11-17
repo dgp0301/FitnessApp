@@ -43,4 +43,4 @@ async function remove(id){
     return await mysql.query(sql,[id]);
 }
 const search = async q => mysql.query(`SELECT id,Text,Post_id FROM ${PREFIX}Comments WHERE Text LIKE ?;`, [`%${q}%`]);
-module.exports = { getAll, getWorkoutComments, getAllUsersComments, add, remove };
+module.exports = { getAll, getWorkoutComments, getAllUsersComments, add, update, remove, search };
