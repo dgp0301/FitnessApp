@@ -3,6 +3,8 @@
 */
 const express = require('express');
 const workout = require('../models/workout');
+const comments = require('../models/comments');
+const reactions = require('../models/reaction');
 const router = express.Router();
 
 router
@@ -16,6 +18,20 @@ router
     workout.get(id).then(x=>{
         res.send(x)
     }).catch(next);
+})
+.get(':id/comments', (req,res,next)=>{
+    const id = +req.params.id;
+    if(!id) return next();
+    comments.getWorkoutComments(id)
+    .then(x=>res.send(x))
+    .catch(next);
+})
+.get('/:id/reactions',(req,res,next)=>{
+    const id = +req.params.id;
+    if(!id) return next();
+    reactions.getForPost(id)
+    .then(x=>res.send( x ))
+    .catch(next);
 })
 .post('/',(req, res, next)=>{
     workout.add(
