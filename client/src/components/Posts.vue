@@ -2,24 +2,24 @@
   <div class="card">
   <div class="card-content">
     <p class="title">
-      {{post.workoutType}}
+      {{post.Excercise_Type}}
     </p>
     <p class="subtitle">
-      {{post.description}}
+      {{post.Note}}
     </p>
     <p class="has-text-right">
-      @{{post.owner.handle}}
+      @{{post.name}}
     </p>
   </div>
   <footer class="card-footer">
     <p class="card-footer-item">
       <span>
-        Sets: {{post.sets}}
+        Sets: {{post.Sets}}
       </span>
     </p>
     <p class="card-footer-item">
       <span>
-        Reps: {{post.reps}}
+        Reps: {{post.Reps_Per_Set}}
       </span>
     </p>
   </footer>

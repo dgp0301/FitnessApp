@@ -4,6 +4,6 @@
 */
 
 import { myFetch } from "./my-fetch";
-import session from './session';
+import {session} from './session';
 
-export const getWorkouts =  ()=> myFetch('users/')
+export const getWorkouts =  ()=> myFetch(`users/7/workoutfeed`)
