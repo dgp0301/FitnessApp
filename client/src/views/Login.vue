@@ -12,9 +12,9 @@
 </div>
 <div class="field">
   <p class="control has-icons-left">
-    <input class="input" type="text" placeholder="Name">
+    <input class="input" type="text" placeholder="Password" v-model="password">
     <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
+      <i class="fas fa-lock"></i>
     </span>
   </p>
 </div>
@@ -31,14 +31,17 @@
 </template>
 
 <script>
-import session from "@/models/session";
+import { session, login } from "@/models/session";
 export default {
   data: ()=>({
-    username: ""
+    username: "",
+    password:""
   }),
   methods: {
     login(){
-      session.user=session.users.find(x => x.handle == this.username)
+      login(this.username,this.password).then(x=>session.user=x);
+      //session.user=session.users.find(x => x.handle == this.username)
+      console.log(session.user);
       this.$router.push('feed');
     },
   }

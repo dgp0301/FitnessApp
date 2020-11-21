@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Feed from '../views/Feed.vue'
-import session from '../models/session'
+import { session } from '../models/session'
 import Admin from '../views/Admin.vue';
 import MyExcercise from '../views/MyExcercise.vue';
 
