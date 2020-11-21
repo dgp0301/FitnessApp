@@ -4,9 +4,7 @@
 import { myFetch } from './my-fetch';
 
 export const session = {
-    user:null,
-    workouts:[],
-    notifications:[]
+    user:null
     
 }
 export  function login(email, password){

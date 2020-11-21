@@ -39,7 +39,7 @@ export default {
   }),
   methods: {
     login(){
-      login(this.username,this.password).then(x=>session.user=x);
+      session.user = login(this.username,this.password);
       //session.user=session.users.find(x => x.handle == this.username)
       console.log(session.user);
       this.$router.push('feed');
