@@ -8,8 +8,8 @@
             <router-link to="/track"  class="button is-primary">Track Workout</router-link>
         </div>
         <div class="media-content">
-            <p class="has-text-weight-bold">{{session.user.name}}</p>
-            <p class="is-size-7">@{{session.user.handle}}</p>
+            <p class="has-text-weight-bold">{{session.user.FirstName}} {{session.user.LastName}}</p>
+            <p class="is-size-7">@{{session.user.PrimaryEmail}}</p>
         </div>
     </div>
     <div class="buttons" v-else>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import session from "@/models/session";
+import { session } from "@/models/session";
 export default {
     data: ()=> ({
         session

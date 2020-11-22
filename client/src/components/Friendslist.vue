@@ -18,23 +18,27 @@
     <a class="is-active">Current</a>
     <a>Suggested</a>
   </p>
-  <a class="panel-block is-active" v-for="(x,i) in session.users"
+  <a class="panel-block is-active" v-for="(x,i) in friends.x"
                                   :key="i"
-                                  :user="x">
+                                  :friend="x">
     <span class="panel-icon">
       <i class="fas fa-user" aria-hidden="true"></i>
     </span>
-    {{x.handle}}
+    {{x.Name}}
   </a>
 </nav>
 </template>
 
 <script>
-import session from "@/models/session";
+import { session } from "@/models/session";
+import { getFriends } from '@/models/feed'
 export default {
   data: ()=>({
-    session
-  })
+    friends: []
+  }),
+  async created(){
+    this.friends = await getFriends();
+  }
 
 }
 </script>

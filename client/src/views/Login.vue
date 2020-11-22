@@ -38,10 +38,9 @@ export default {
     password:""
   }),
   methods: {
-    login(){
-      session.user = login(this.username,this.password);
+    async login(){
+      session.user =  await login(this.username,this.password);
       //session.user=session.users.find(x => x.handle == this.username)
-      console.log(session.user);
       this.$router.push('feed');
     },
   }
