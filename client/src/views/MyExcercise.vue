@@ -1,7 +1,7 @@
 <template>
   <div class="">
-      <h1 class="title is-1 has-text-centered">{{session.user.name}}'s Excercises</h1>
-      <Posts v-for="(x,i) in session.workouts" 
+      <h1 class="title is-1 has-text-centered">{{session.user.FirstName}}'s Excercises</h1>
+      <Posts v-for="(x,i) in workouts" 
                     :key="i"
                     :post="x"/>
   </div>
@@ -9,14 +9,19 @@
 
 <script>
 import Posts from '@/components/Posts'
-import session from '@/models/session'
+import { session } from '@/models/session'
+import { getMyWorkouts } from "@/models/feed";
 export default {
     components:{
         Posts
     },
     data:()=>({
-        session
-    })
+        session,
+        workouts:[]
+    }),
+    async created(){
+        this.workouts = await getMyWorkouts();
+    },
 }
 </script>
 

@@ -8,4 +8,6 @@ import {session} from './session';
 
 export const getWorkouts = ()=> myFetch(`users/${session.user.id}/workoutfeed`);
 
-export const getFriends = ()=> myFetch(`users/${session.user.id}/followers`)
+export const getFriends = ()=> myFetch(`users/${session.user.id}/followers`);
+
+export const getMyWorkouts = ()=>myFetch(`users/${session.user.id}/myworkouts`);
