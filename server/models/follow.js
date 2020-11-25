@@ -16,7 +16,7 @@ async function getFollowers(id){
     CONCAT(U.FirstName," ",U.LastName) as Name
     FROM ${PREFIX}Followers AS F 
     INNER JOIN ${PREFIX}Users AS U
-    ON U.id=F.Following_id
+    ON U.id=F.Follower_id
     WHERE F.Following_id = ? AND F.isAccepted = b'1'`;
     return await mysql.query(sql,[id])
 }
