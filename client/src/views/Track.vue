@@ -1,14 +1,15 @@
 <template>
 <form>
 <div class="field">
-  <label class="label">Workout type</label>
-  <div class="control">
-    <div class="select">
+  <label class="label" style="padding: 10px">Workout type</label>
+  <div class="control" >
+    <div class="select" >
       <select v-model="workoutType">
         <option>Select a workout</option>
-        <option v-for ="(x,i) in workouts.types"
-        :key="i">
-        {{x}}
+        <option v-for ="(x,i) in types.x"
+        :key="i"
+        :type="x">
+        {{x.Name}}
         </option>
       </select>
     </div>
@@ -77,19 +78,24 @@
 </template>
 
 <script>
-import workouts from "@/models/workout";
+import { getExcercise } from "@/models/track";
 import session from '@/models/session';
 export default {
     data:()=>({
-      workouts,
+      types: [],
       workoutType:'',
       sets:'',
       reps:'',
       description:''
     }),
+    async created(){
+       this.types = await getExcercise();
+    
+    },
     methods: {
+      
       trackWorkout(){
-        session.addWorkout(this.workoutType,this.sets,this.reps,this.description,session.user);
+        //session.addWorkout(this.workoutType,this.sets,this.reps,this.description,session.user);
       }
     }
 }

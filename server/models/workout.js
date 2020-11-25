@@ -8,6 +8,9 @@ const Types = { SQUAT: "Squat" , BENCH_PRESS: "Bench Press" };
 async function getAll(){
     return await(mysql.query(`SELECT * FROM ${PREFIX}Workouts`));
 }
+async function getTypes(){
+    return await(mysql.query(`SELECT * FROM ${PREFIX}Exercise_Types`));
+}
 async function get(id){
     const sql = `SELECT *
     FROM ${PREFIX}Workouts WHERE Owner_id = ?`;
@@ -43,4 +46,5 @@ async function remove(id){
     const sql = `DELETE FROM ${PREFIX}Workout Where id=?`;
     return await mysql.query(sql,[id]);
 }
-module.exports = { Types, getAll, get, getFollowedWorkouts, getUserWorkouts, add, update, remove }
+
+module.exports = { Types, getAll, getTypes, get, getFollowedWorkouts, getUserWorkouts, add, update, remove }

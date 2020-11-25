@@ -33,6 +33,10 @@ router
     .then(x=>res.send( x ))
     .catch(next);
 })
+.get('/types',(req,res,next)=>{
+    workout.getTypes().then(x=>res.send(x))
+    .catch(next)
+})
 .post('/',(req, res, next)=>{
     workout.add(
     req.body.Owner_id,

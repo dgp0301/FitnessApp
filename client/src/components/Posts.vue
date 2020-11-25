@@ -2,7 +2,7 @@
   <div class="card">
   <div class="card-content">
     <p class="title">
-      {{post.Excercise_Type}}
+      {{post.Exercise_Type}}
     </p>
     <p class="subtitle">
       {{post.Note}}
