@@ -78,15 +78,15 @@
 </template>
 
 <script>
-import { getExcercise } from "@/models/track";
+import { getExcercise, trackExercise } from "@/models/track";
 import session from '@/models/session';
 export default {
     data:()=>({
       types: [],
-      workoutType:'',
-      sets:'',
-      reps:'',
-      description:''
+      workoutType:``,
+      sets:``,
+      reps:``,
+      description:``
     }),
     async created(){
        this.types = await getExcercise();
@@ -94,8 +94,8 @@ export default {
     },
     methods: {
       
-      trackWorkout(){
-        //session.addWorkout(this.workoutType,this.sets,this.reps,this.description,session.user);
+      async trackWorkout(workoutType,sets,reps,description){
+        await trackExercise(this.workoutType,this.sets,this.reps,this.description);
       }
     }
 }
