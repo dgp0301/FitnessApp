@@ -20,6 +20,32 @@ async function getFollowers(id){
     WHERE F.Following_id = ? AND F.isAccepted = b'1'`;
     return await mysql.query(sql,[id])
 }
+async function getFollowing(id){
+    const sql = `SELECT F.*,
+    CONCAT(U.FirstName," ",U.LastName) as Name
+    FROM ${PREFIX}Followers AS F 
+    INNER JOIN ${PREFIX}Users AS U
+    ON U.id=F.Following_id
+    WHERE F.Follower_id = ? AND F.isAccepted = b'1'`;
+    return await mysql.query(sql,[id])
+}
+async function getFollowinger(id){
+    const sql = `SELECT F.*,
+    CONCAT(U.FirstName," ",U.LastName) as Name
+    FROM ${PREFIX}Followers AS F 
+    INNER JOIN ${PREFIX}Users AS U
+    ON U.id=F.Follower_id
+    WHERE F.Following_id = ? AND F.isAccepted = b'1'`;
+    const follower = await mysql.query(sql,[id]);
+    const sql2 = `SELECT F.*,
+    CONCAT(U.FirstName," ",U.LastName) as Name
+    FROM ${PREFIX}Followers AS F 
+    INNER JOIN ${PREFIX}Users AS U
+    ON U.id=F.Following_id
+    WHERE F.Follower_id = ? AND F.isAccepted = b'1'`;
+    const following = await mysql.query(sql2,[id]);
+    return { following, follower }
+}
 async function getPendingFollowers(id){
     const sql = `SELECT F.*,
     CONCAT(U.FirstName," ",U.LastName) as Name
@@ -49,4 +75,4 @@ async function acceptFollow(id){
 async function remove(id){
     return await mysql.query(`DELETE FROM ${PREFIX}Followers WHERE id = ?`,[id]);
 }
-module.exports = { getAll, getFollowers, getPendingFollowers, seePendingFollows, followRequest, acceptFollow, remove };
+module.exports = { getAll, getFollowers, getFollowing, getFollowinger, getPendingFollowers, seePendingFollows, followRequest, acceptFollow, remove };

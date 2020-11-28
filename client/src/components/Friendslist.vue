@@ -15,10 +15,11 @@
     </p>
   </div>
   <p class="panel-tabs">
-    <a class="is-active">Current</a>
-    <a>Suggested</a>
+    <a  :class="{'is-active':followingPressed}" @click="followingPressed=true">Following</a>
+    <a  :class="{'is-active':!followingPressed}" @click="followingPressed=false">Followers</a>
   </p>
-  <a class="panel-block is-active" v-for="(x,i) in friends.x"
+  <div v-if="followingPressed==true">
+  <a class="panel-block is-active" v-for="(x,i) in friends.x.following"
                                   :key="i"
                                   :friend="x">
     <span class="panel-icon">
@@ -26,6 +27,17 @@
     </span>
     {{x.Name}}
   </a>
+  </div>
+  <div v-if="followingPressed==false">
+  <a class="panel-block is-active" v-for="(x,i) in friends.x.follower"
+                                  :key="i"
+                                  :friend="x">
+    <span class="panel-icon">
+      <i class="fas fa-user" aria-hidden="true"></i>
+    </span>
+    {{x.Name}}
+  </a>
+  </div>
 </nav>
 </template>
 
@@ -34,7 +46,8 @@ import { session } from "@/models/session";
 import { getFriends } from '@/models/feed'
 export default {
   data: ()=>({
-    friends: []
+    friends: [],
+    followingPressed: true
   }),
   async created(){
     this.friends = await getFriends();

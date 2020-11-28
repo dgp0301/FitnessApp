@@ -24,7 +24,7 @@ router
 .get('/:id/followers',(req, res, next)=>{
     const id = +req.params.id;
     if(!id){return next();}
-    follow.getFollowers(id).then(x => res.send( {x} ))
+    follow.getFollowinger(id).then(x => res.send( {x} ))
     .catch(next);
 })
 .get('/:id/myworkouts',(req,res,next)=>{
