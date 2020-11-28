@@ -36,7 +36,7 @@
         <i class="fas fa-question is-left" aria-hidden="true"></i>
       </span>
     {{x.Name}}
-    <div class="field"><button class="button is-pulled-right">why </button></div>
+    <div class="field is-italic is-size-7" style="padding-left:230px">   -Pending</div>
     
     </a>
   <a class="panel-block is-active" v-for="(x,i) in friends.x.follower"
