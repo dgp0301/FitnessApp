@@ -19,16 +19,26 @@
     <a  :class="{'is-active':!followingPressed}" @click="followingPressed=false">Followers</a>
   </p>
   <div v-if="followingPressed==true">
-  <a class="panel-block is-active" v-for="(x,i) in friends.x.following"
+  <a class="panel-block " v-for="(x,i) in friends.x.following"
                                   :key="i"
                                   :friend="x">
-    <span class="panel-icon">
+    <span class="panel-icon" >
       <i class="fas fa-user" aria-hidden="true"></i>
     </span>
     {{x.Name}}
   </a>
   </div>
   <div v-if="followingPressed==false">
+    <a class="panel-block is-active " v-for="(x,i) in friends.x.pending"
+                                    :key="i"
+                                    :friend="x">
+      <span class="panel-icon">
+        <i class="fas fa-question is-left" aria-hidden="true"></i>
+      </span>
+    {{x.Name}}
+    <div class="field"><button class="button is-pulled-right">why </button></div>
+    
+    </a>
   <a class="panel-block is-active" v-for="(x,i) in friends.x.follower"
                                   :key="i"
                                   :friend="x">
@@ -57,5 +67,9 @@ export default {
 </script>
 
 <style>
+#pim{
+  float: right;
+  text-align: right;
+}
 
 </style>

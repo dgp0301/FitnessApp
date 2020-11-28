@@ -11,23 +11,27 @@ router
     follow.getAll().then(x=>res.send(x))
     .catch(next);
 })
-.get('/pendingFollowers',(req,res,next)=>{
-    follow.getPendingFollowers(req.body.id)
+.get('/:id/pendingFollowers',(req,res,next)=>{
+    const id = +req.params.id;
+    if(!id){return next();}
+    follow.getPendingFollowers(id)
     .then(x=>res.send( x ))
     .catch(next);
 })
-.get('/pendingFollows',(req,res,next)=>{
-    follow.seePendingFollows(req.body.id)
+.get('/:id/pendingFollows',(req,res,next)=>{
+    const id = +req.params.id;
+    if(!id){return next();}
+    follow.seePendingFollows(id)
     .then(x=>res.send( x ))
     .catch(next);
 })
-.put('/acceptLink',(req,res,next)=>{
+.post('/acceptLink',(req,res,next)=>{
     follow.acceptFollow(
         req.body.id
     ).then(x=>res.send(x))
     .catch(next);
 })
-.put('/createLink',(req,res,next)=>{
+.post('/createLink',(req,res,next)=>{
     follow.followRequest(
         req.body.following,
         req.body.follower

@@ -44,7 +44,14 @@ async function getFollowinger(id){
     ON U.id=F.Following_id
     WHERE F.Follower_id = ? AND F.isAccepted = b'1'`;
     const following = await mysql.query(sql2,[id]);
-    return { following, follower }
+    const sql3 = `SELECT F.*,
+    CONCAT(U.FirstName," ",U.LastName) as Name
+    FROM ${PREFIX}Followers AS F 
+    INNER JOIN ${PREFIX}Users AS U
+    ON U.id=F.Follower_id
+    WHERE F.Following_id = ? AND F.isAccepted = b'0'`;
+    const pending = await mysql.query(sql3,[id])
+    return { following, follower, pending }
 }
 async function getPendingFollowers(id){
     const sql = `SELECT F.*,
