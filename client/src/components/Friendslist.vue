@@ -29,14 +29,19 @@
   </a>
   </div>
   <div v-if="followingPressed==false">
-    <a class="panel-block is-active " v-for="(x,i) in friends.x.pending"
+    <a class="panel-block is-active is-grouped " v-for="(x,i) in friends.x.pending"
                                     :key="i"
-                                    :friend="x">
+                                    :friend="x" style="width: 100%">
       <span class="panel-icon">
         <i class="fas fa-question is-left" aria-hidden="true"></i>
       </span>
-    {{x.Name}}
-    <div class="field is-italic is-size-7" style="padding-left:230px">   -Pending</div>
+    <span class="control is-expanded">{{x.Name}}</span>
+    <span class="icon is-small is-right" @click.prevent="denyRequest" >
+      <i class="fas fa-minus" @click.prevent="requestId=x.id "></i>
+    </span>
+    <span class="icon is-small is-right" @click.prevent="acceptRequest">
+      <i class="fas fa-check" style="padding-left: 5px" @click.prevent="requestId=x.id" ></i>
+    </span>
     
     </a>
   <a class="panel-block is-active" v-for="(x,i) in friends.x.follower"
@@ -53,14 +58,25 @@
 
 <script>
 import { session } from "@/models/session";
-import { getFriends } from '@/models/feed'
+import { getFriends, denyFollower, acceptFollower } from '@/models/feed'
 export default {
   data: ()=>({
     friends: [],
-    followingPressed: true
+    followingPressed: true,
+    requestId: +''
   }),
   async created(){
     this.friends = await getFriends();
+  },
+  methods:{
+    acceptRequest(){
+      console.log(this.requestId);
+      acceptFollower(this.requestId);
+    },
+    denyRequest(){
+      console.log(this.requestId);
+      denyFollower(this.requestId)
+    }
   }
 
 }

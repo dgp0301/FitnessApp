@@ -2,10 +2,10 @@
 
 const API_ROOT = "http://localhost:3002/";
 
-export function myFetch( url, data = null, method=null ){
+export function myFetch( url, data = null, methods=null ){
     if(data){
         return fetch( API_ROOT + url, {
-            method : 'POST',
+            method : methods||'POST',
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'

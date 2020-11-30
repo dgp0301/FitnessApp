@@ -17,3 +17,9 @@ export function React(post_id){
 export function Comment(text,workout_id){
     return myFetch(`comments`,{Text: text, Workout_id: workout_id, Owner_id: session.user.id});
 }
+export function acceptFollower(follow_id){
+    return myFetch(`follow/acceptLink`,{id: follow_id});
+}
+export function denyFollower(follow_id){
+    return myFetch(`follow`,{id: follow_id}, 'DELETE');
+}
