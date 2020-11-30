@@ -14,3 +14,6 @@ export const getMyWorkouts = ()=>myFetch(`users/${session.user.id}/myworkouts`);
 export function React(post_id){
     return myFetch(`reactions`,{Post_id: post_id, Owner_id: session.user.id});
 }
+export function Comment(text,workout_id){
+    return myFetch(`comments`,{Text: text, Workout_id: workout_id, Owner_id: session.user.id});
+}

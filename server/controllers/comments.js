@@ -22,7 +22,7 @@ router
     ).then(x=>res.send(x))
     .catch(next);
 })
-.put('/add',(req,res,next)=>{
+.post('/',(req,res,next)=>{
     comments.add(
         req.body.Text,
         req.body.Workout_id,

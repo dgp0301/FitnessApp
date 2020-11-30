@@ -22,12 +22,24 @@
         <i class="fas fa-heart"></i>
       </span>
     </p>
-    <p class="card-footer-item">
+    <p class="card-footer-item" @click.prevent="commentBox= !commentBox">
       <span class="has-icons">
         Comment 
         <i class="fas fa-comment"></i>
       </span>
     </p>
+  </footer>
+  <footer class="card-footer" style = "cursor:pointer" v-if="commentBox">
+    <div class="field is-grouped" style="width: 100%">
+      <p class="control is-expanded">
+        <input class="input" type="text" placeholder="Type comment here..." v-model="commentText">
+      </p>
+      <p class="control">
+        <a class="button is-primary" @click.prevent="postComment">
+          Post
+        </a>
+      </p>
+    </div>
   </footer>
 </div>
 </template>
@@ -36,6 +48,10 @@
 import { React, Comment } from "@/models/feed";
 
 export default {
+    data: ()=>({
+      commentBox: 0,
+      commentText: ''
+    }),
     props: {
         post: Object
     },
@@ -44,6 +60,9 @@ export default {
         //console.log(this.post.id);
         await React(this.post.id);
         this.post.Reaction += 1;
+      },
+      async postComment(){
+        Comment(this.commentText, this.post.id)
       }
     }
 }
