@@ -9,6 +9,7 @@ const users = require('./controllers/users');
 const workout = require('./controllers/workout');
 const follow = require('./controllers/follow');
 const comments = require('./controllers/comments');
+const reaction = require('./controllers/reactions');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -38,6 +39,7 @@ app.use('/users',users);
 app.use('/workout',workout);
 app.use('/follow',follow);
 app.use('/comments',comments);
+app.use('/reactions',reaction);
 
 app.get('*',(req,res,next)=>{
     res.sendFile( path.join(__dirname + '/../docs/index.html') )

@@ -19,7 +19,8 @@ async function get(id){
 }
 async function getFollowedWorkouts(id){
     const sql = `SELECT W.*,
-    CONCAT(U.FirstName," ",U.LastName) as name
+    CONCAT(U.FirstName," ",U.LastName) as name,
+    (SELECT COUNT(*) FROM ${PREFIX}Reactions WHERE Workout_id = W.id) as Reaction
     FROM ${PREFIX}Workouts AS W
     INNER JOIN ${PREFIX}Followers AS F
     ON W.Owner_id = F.Following_id

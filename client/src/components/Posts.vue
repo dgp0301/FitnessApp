@@ -1,25 +1,31 @@
 <template>
   <div class="card">
   <div class="card-content">
+    <div class="content">
+      {{post.Reaction}} people liked this
+    </div>
+
     <p class="title">
       {{post.Exercise_Type}}
     </p>
     <p class="subtitle">
-      {{post.Note}}
+     {{post.Sets}} x {{post.Reps_Per_Set}} {{post.Note}}
     </p>
     <p class="has-text-right">
       @{{post.name}}
     </p>
   </div>
-  <footer class="card-footer">
-    <p class="card-footer-item">
-      <span>
-        Sets: {{post.Sets}}
+  <footer class="card-footer" style = "cursor:pointer">
+    <p class="card-footer-item" @click.prevent="react">
+      <span class="has-icons">
+        Like
+        <i class="fas fa-heart"></i>
       </span>
     </p>
     <p class="card-footer-item">
-      <span>
-        Reps: {{post.Reps_Per_Set}}
+      <span class="has-icons">
+        Comment 
+        <i class="fas fa-comment"></i>
       </span>
     </p>
   </footer>
@@ -27,9 +33,17 @@
 </template>
 
 <script>
+import { React, Comment } from "@/models/feed";
+
 export default {
     props: {
         post: Object
+    },
+    methods: {
+      async react(){
+        console.log(this.post.id);
+        await React(this.post.id);
+      }
     }
 }
 </script>
