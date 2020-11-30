@@ -1,6 +1,8 @@
 /*
     query workouts table 
 */
+const comments = require('./comments'); 
+
 const mysql = require('./mysql');
 const PREFIX = process.env.MYSQL_TABLE_PREFIX ||"EX_Fall_2020_";
 const Types = { SQUAT: "Squat" , BENCH_PRESS: "Bench Press" };
@@ -27,7 +29,12 @@ async function getFollowedWorkouts(id){
     INNER JOIN ${PREFIX}Users AS U
     ON U.id = F.Following_id
     WHERE F.Follower_id = ? AND F.isAccepted = b'1'`;
-    return await mysql.query(sql,[id]);
+    const workouts = await mysql.query(sql,[id]);
+
+    for (const w of workouts) {
+        w.Comments = await comments.getWorkoutComments(w.id); 
+    }
+    return workouts
 }
 async function getUserWorkouts(id){
     const sql = `SELECT * FROM ${PREFIX}Workouts WHERE Owner_id = ?`;

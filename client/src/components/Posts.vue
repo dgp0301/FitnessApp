@@ -29,7 +29,7 @@
       </span>
     </p>
   </footer>
-  <footer class="card-footer" style = "cursor:pointer" v-if="commentBox">
+  <footer class="card-footer" v-if="commentBox">
     <div class="field is-grouped" style="width: 100%">
       <p class="control is-expanded">
         <input class="input" type="text" placeholder="Type comment here..." v-model="commentText">
@@ -39,6 +39,14 @@
           Post
         </a>
       </p>
+    </div>
+  </footer>
+  <footer class="card-footer">
+    <div class="media" v-for="c in post.Comments" :key="c.id" style="padding: 5px">
+      <div class="media-content">
+        <b >{{c.Commenter}} </b>
+        <span>{{c.Text}}</span>
+      </div>
     </div>
   </footer>
 </div>
