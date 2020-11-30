@@ -41,8 +41,9 @@ export default {
     },
     methods: {
       async react(){
-        console.log(this.post.id);
+        //console.log(this.post.id);
         await React(this.post.id);
+        this.post.Reaction += 1;
       }
     }
 }
