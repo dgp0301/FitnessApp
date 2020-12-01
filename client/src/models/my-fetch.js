@@ -1,6 +1,6 @@
 //how to get data to and from the server
 
-const API_ROOT = "http://localhost:3002/";
+const API_ROOT = "/";
 
 export function myFetch( url, data = null, methods=null ){
     if(data){
