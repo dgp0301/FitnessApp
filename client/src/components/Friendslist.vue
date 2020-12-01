@@ -6,29 +6,45 @@
     </span>
     Friends
   </p>
+  <!-- Search for other users swaps followers for search results -->
+  
   <div class="panel-block">
-    <p class="control has-icons-left">
-      <input class="input" type="text" placeholder="Search">
-      <span class="icon is-left">
-        <i class="fas fa-search" aria-hidden="true"></i>
-      </span>
-    </p>
+    <form class="control has-icons-left has-addons-right" @submit.prevent="searchUsers">
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="text" placeholder="Search For Users" v-model="query">
+          <span class="icon is-small is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </p>
+      </div>
+    </form>
   </div>
+  <div v-if="query!=''">
+    <a class="panel-block " v-for="user in searched"
+                                    :key="user.id">
+      <span class="panel-icon" >
+        <i class="fas fa-user" aria-hidden="true"></i>
+      </span>
+      {{user.FirstName}} {{user.LastName}}
+    </a>
+  </div>
+  <div v-else>
   <p class="panel-tabs">
     <a  :class="{'is-active':followingPressed}" @click="followingPressed=true">Following</a>
     <a  :class="{'is-active':!followingPressed}" @click="followingPressed=false">Followers</a>
   </p>
   <div v-if="followingPressed==true">
-  <a class="panel-block " v-for="(x,i) in friends.x.following"
-                                  :key="i"
-                                  :friend="x">
-    <span class="panel-icon" >
-      <i class="fas fa-user" aria-hidden="true"></i>
-    </span>
-    {{x.Name}}
-  </a>
+    <a class="panel-block " v-for="(x,i) in friends.x.following"
+                                    :key="i"
+                                    :friend="x">
+      <span class="panel-icon" >
+        <i class="fas fa-user" aria-hidden="true"></i>
+      </span>
+      {{x.Name}}
+    </a>
   </div>
-  <div v-if="followingPressed==false">
+  <div v-else-if="followingPressed==false">
     <a class="panel-block is-active is-grouped " v-for="(x,i) in friends.x.pending"
                                     :key="i"
                                     :friend="x" style="width: 100%">
@@ -53,17 +69,20 @@
     {{x.Name}}
   </a>
   </div>
+  </div>
 </nav>
 </template>
 
 <script>
 import { session } from "@/models/session";
-import { getFriends, denyFollower, acceptFollower } from '@/models/feed'
+import { getFriends, denyFollower, acceptFollower, search } from '@/models/feed'
 export default {
   data: ()=>({
     friends: [],
     followingPressed: true,
-    requestId: +''
+    requestId: +'',
+    query:'',
+    searched:[]
   }),
   async created(){
     this.friends = await getFriends();
@@ -76,6 +95,10 @@ export default {
     denyRequest(){
       console.log(this.requestId);
       denyFollower(this.requestId)
+    },
+    async searchUsers(){
+      this.searched= await search(this.query);
+      console.log(this.searched);
     }
   }
 

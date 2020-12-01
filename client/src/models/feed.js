@@ -23,3 +23,6 @@ export function acceptFollower(follow_id){
 export function denyFollower(follow_id){
     return myFetch(`follow`,{id: follow_id}, 'DELETE');
 }
+export function search(query){
+    return myFetch(`users/search?q=${query}`);
+}
