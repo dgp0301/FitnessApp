@@ -62,7 +62,7 @@ router
     users.register(
         req.body.FirstName,
         req.body.LastName, 
-        req.body.DOB,
+        new Date(),
         req.body.Password,
         users.Types.USER,
         req.body.Email
