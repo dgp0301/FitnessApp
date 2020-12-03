@@ -9,13 +9,23 @@
   <!-- Search for other users swaps followers for search results -->
   
   <div class="panel-block">
-    <form class="control has-icons-left has-addons-right" @submit.prevent="searchUsers">
+    <form class="is-extended" style="width:100%">
       <div class="field">
         <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" placeholder="Search For Users" v-model="query">
-          <span class="icon is-small is-left">
-            <i class="fas fa-search"></i>
-          </span>
+          <b-autocomplete
+                v-model="query"
+                open-on-focus
+                :searched="searchUsers"
+                @keypress.prevent="searchUsers"
+                placeholder="Search For Users"
+                style="">
+              
+            </b-autocomplete>
+              <span class="icon is-small is-left">
+                <i class="fas fa-search"></i>
+              </span>
+          <!--<input class="input" type="text"  v-model="query">
+          -->
         </p>
       </div>
     </form>
@@ -96,9 +106,13 @@ export default {
       console.log(this.requestId);
       denyFollower(this.requestId)
     },
+    
+  },
+  computed:{
     async searchUsers(){
       this.searched= await search(this.query);
       console.log(this.searched);
+      return this.searched
     }
   }
 
