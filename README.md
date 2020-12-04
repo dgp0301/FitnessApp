@@ -1,6 +1,6 @@
 # FitnessApp
 ## fitness application for web programming course
-# Midterm progress
-## most of the client side is completely finished  and admin function added can be accessed if logged in with 
-### username: admin  
-### password doesn't matter currently
+# Final submission
+## Front -end linked with back end. Workout posting funcitonality, friends, reactions and comments
+### username: daniel1@rpimentel.com  
+### password Chili
